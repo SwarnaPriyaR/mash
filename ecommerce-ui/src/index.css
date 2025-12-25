@@ -1,37 +1,204 @@
-/* Default light theme */
+/* =====================
+   THEME VARIABLES
+===================== */
+
+/* Light Theme (default) */
 :root {
-  --bg-color: #fff;
-  --text-color: #000;
-  --header-bg: #eee;
-  --button-bg: #007bff;
-  --button-text: #fff;
+  --text-color: #000000;
+  --page-bg: #ffffff;
+
+  --btn-bg: #000000;
+  --btn-text: #ffffff;
 }
 
-/* Dark theme */
+/* Dark Theme */
 body[data-theme="dark"] {
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
-  --header-bg: #1f1f1f;
-  --button-bg: #0d6efd;
-  --button-text: #fff;
+  --text-color: #ffffff;
+  --page-bg: #0b0b0b; /* midnight black */
+
+  --btn-bg: linear-gradient(135deg, #003c3c, #004f4f);
+  --btn-text: #ffffff;
 }
 
-/* Apply variables */
+/* =====================
+   GLOBAL
+===================== */
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
+  font-family: "Segoe UI", sans-serif;
   color: var(--text-color);
+  background-color: var(--page-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button {
-  padding: 8px 16px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
+/* =====================
+   HEADER
+===================== */
+
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 24px;
+  background: transparent;
+}
+
+.logo {
+  height: 40px;
   cursor: pointer;
 }
 
-button:hover {
+.header-right {
+  display: flex;
+  gap: 12px;
+
+  /* 👇 move slightly left */
+  margin-right: 16px;
+}
+
+/* =====================
+   HOME HERO
+===================== */
+
+.home-hero {
+  height: 100vh;
+  width: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-content {
+  margin-top: 80px; /* keeps button below header */
+}
+
+/* =====================
+   PAGE CONTAINER
+   (Products, Cart, Product Detail)
+===================== */
+
+.page-container {
+  padding-top: 90px;   /* prevents header overlap */
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 100vh;
+
+  background-color: var(--page-bg);
+  color: var(--text-color);
+}
+
+/* =====================
+   BUTTONS
+===================== */
+
+.theme-btn {
+  padding: 14px 30px;
+  font-size: 16px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.theme-btn:hover {
+  transform: scale(1.05);
   opacity: 0.9;
+}
+
+.theme-btn,
+.small-btn,
+.back-btn {
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 22px;
+}
+
+/* Header buttons slightly smaller */
+.small-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+/* Back button style */
+.back-btn {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+/* =====================
+   PRODUCT LIST
+===================== */
+
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 12px;
+
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000000;
+}
+
+/* Dark theme cards */
+body[data-theme="dark"] .product-card {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* =====================
+   CART ITEMS
+===================== */
+
+.cart-item {
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 12px;
+
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000000;
+}
+
+body[data-theme="dark"] .cart-item {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* =====================
+   MOBILE
+===================== */
+
+@media (max-width: 768px) {
+  .home-content {
+    margin-top: 120px;
+  }
+
+  .product-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }

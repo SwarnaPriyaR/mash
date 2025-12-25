@@ -4,7 +4,8 @@ import { CartContext } from "../context/CartContext";
 function Cart() {
   const { cart, clearCart } = useContext(CartContext);
 
-  const phoneNumber = "9176449578"; // your WhatsApp number
+
+  const phoneNumber = "9176449578"; // WhatsApp number
 
   const message = cart
     .map((p, i) => `${i + 1}. ${p.name} - ${p.price}`)
@@ -14,22 +15,44 @@ function Cart() {
     "Hello, I want to place an order:\n" + message
   )}`;
 
-  if (cart.length === 0) return <h2>Your cart is empty</h2>;
-
   return (
-    <div>
-      <h2>Cart</h2>
-      <ul>
-        {cart.map((p, idx) => (
-          <li key={idx}>
-            {p.name} - {p.price}
-          </li>
-        ))}
-      </ul>
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-        <button>Checkout via WhatsApp</button>
-      </a>
-      <button onClick={clearCart}>Clear Cart</button>
+    <div className="page-container">
+
+
+      <h2 style={{ marginTop: "20px" }}>Your Cart</h2>
+
+      {cart.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <>
+          <ul className="product-list">
+            {cart.map((p, idx) => (
+              <li className="cart-item" key={idx}>
+                <strong>{p.name}</strong>
+                <span>{p.price}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="theme-btn" style={{ marginTop: "20px" }}>
+              Checkout via WhatsApp
+            </button>
+          </a>
+
+          <button
+            className="theme-btn"
+            style={{ marginTop: "12px", background: "#444" }}
+            onClick={clearCart}
+          >
+            Clear Cart
+          </button>
+        </>
+      )}
     </div>
   );
 }

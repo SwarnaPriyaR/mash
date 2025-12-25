@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import lightBg from "../assets/images/lightHome.png";
+import darkBg from "../assets/images/darkHome.png";
 
-function Home() {
-  const { cart } = useContext(CartContext);
+function Home({ theme }) {
+  const bgImage = theme === "dark" ? darkBg : lightBg;
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Welcome to Mash Clothing</h1>
-      <Link to="/products">
-        <button style={{ padding: "10px 20px", margin: "20px" }}>View Products</button>
-      </Link>
+    <div
+      className="home-hero"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <div className="home-content">
+        <Link to="/products">
+          <button className="theme-btn">View Products</button>
+        </Link>
+      </div>
     </div>
   );
 }

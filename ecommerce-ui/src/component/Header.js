@@ -1,49 +1,38 @@
-import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ThemeContext } from "../context/ThemeContext";
+import logo from "../assets/images/logoLight.png";
 
-function Header() {
+function Header({ toggleTheme, theme, cartCount }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const { darkTheme, toggleTheme } = useContext(ThemeContext);
 
-  const isHome = location.pathname === "/";
-  const isProducts = location.pathname.startsWith("/products") || location.pathname.startsWith("/product");
-  const isCart = location.pathname === "/cart";
+  const isCartPage = location.pathname === "/cart";
 
   return (
-    <header
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
-        background: "var(--header-bg)",
-        color: "var(--text-color)",
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-      }}
-    >
-      {/* Left side */}
-      <div>
-        {isProducts || isCart ? (
-          <button onClick={() => navigate(-1)}>Back</button>
-        ) : (
-          <Link to="/">
-            <h2 style={{ margin: 0 }}>Mash Organics</h2>
+    <header className="header">
+      {/* LEFT SIDE */}
+      {isCartPage ? (
+        <button className="theme-btn" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
+      ) : (
+        <Link to="/">
+          <img src={logo} alt="Mash Clothing" className="logo" />
+        </Link>
+      )}
+
+      {/* RIGHT SIDE */}
+      <div className="header-right">
+        {!isCartPage && (
+          <Link to="/cart">
+            <button className="theme-btn">
+              Cart {cartCount > 0 && `(${cartCount})`}
+            </button>
           </Link>
         )}
-      </div>
 
-      {/* Right side */}
-      <div style={{ display: "flex", gap: "10px" }}>
-        <button onClick={toggleTheme}>
-          {darkTheme ? "Light Theme" : "Dark Theme"}
+        <button className="theme-btn" onClick={toggleTheme}>
+          {theme === "light" ? "Dark" : "Light"}
         </button>
-        <Link to="/cart">
-          <button>Cart</button>
-        </Link>
       </div>
     </header>
   );

@@ -9,7 +9,7 @@ function ProductDetail() {
   const { addToCart } = useContext(CartContext);
 
   return (
-    <div className="container">
+    <div className="page-container">
       <img src={product.image} alt={product.name} />
       <h2>{product.name}</h2>
       <p>{product.description}</p>

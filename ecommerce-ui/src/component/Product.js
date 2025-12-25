@@ -4,27 +4,19 @@ import products from "../data/Product";
 
 function Products() {
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="page-container">
       <h2>Products</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+
+      <ul className="product-list">
         {products.map((p) => (
-          <li
-            key={p.id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "10px",
-              margin: "10px 0",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <li key={p.id} className="product-card">
             <div>
               <h3>{p.name}</h3>
               <p>{p.price}</p>
             </div>
+
             <Link to={`/product/${p.id}`}>
-              <button>View Details</button>
+              <button className="theme-btn">View Details</button>
             </Link>
           </li>
         ))}

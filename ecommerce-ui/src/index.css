@@ -52,7 +52,7 @@ body[data-theme="dark"] .brand-title {
 
 body[data-theme="dark"] {
   --text-color: #ffffff;
-  --page-bg: #0b0b0b;
+  --page-bg: #333333;
 
   /* View Products button */
   --btn-bg: linear-gradient(135deg, #003c3c, #004f4f); /* midnight green */

@@ -2,22 +2,32 @@ import React, { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-  };
+    setCart((prev) => {
+      const existing = prev.find((p) => p.id === product.id);
 
-  const removeFromCart = (productId) => {
-    setCart((prev) => prev.filter((p) => p.id !== productId));
+      if (existing) {
+        return prev.map((p) =>
+          p.id === product.id
+            ? { ...p, quantity: p.quantity + 1 }
+            : p
+        );
+      }
+
+      return [...prev, { ...product, quantity: 1 }];
+    });
   };
 
   const clearCart = () => setCart([]);
 
+  const cartCount = cart.length;
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart, cartCount }}>
       {children}
     </CartContext.Provider>
   );
-};
+}

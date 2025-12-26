@@ -1,7 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../assets/images/logoLight.png";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
-function Header({ toggleTheme, theme, cartCount }) {
+
+import logo from "../assets/images/logoLight.png";
+import cartIcon from "../assets/images/trolley.png";
+import themeLightIcon from "../assets/images/light.png";
+import themeDarkIcon from "../assets/images/dark.png";
+
+function Header({ toggleTheme, theme }) {
+
+  const { cartCount } = useContext(CartContext); // ✅ use cartCount
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -11,7 +20,7 @@ function Header({ toggleTheme, theme, cartCount }) {
     <header className="header">
       {/* LEFT SIDE */}
       {isCartPage ? (
-        <button className="theme-btn" onClick={() => navigate(-1)}>
+        <button className="theme-btn back-btn" onClick={() => navigate(-1)}>
           ← Back
         </button>
       ) : (
@@ -23,16 +32,29 @@ function Header({ toggleTheme, theme, cartCount }) {
       {/* RIGHT SIDE */}
       <div className="header-right">
         {!isCartPage && (
-          <Link to="/cart">
-            <button className="theme-btn">
-              Cart {cartCount > 0 && `(${cartCount})`}
-            </button>
+          <Link to="/cart" className="cart-icon-wrapper">
+            <img
+              src={cartIcon}
+              alt="Cart"
+              className="cart-icon-btn"
+            />
+
+            {cartCount > 0 && (
+              <span className="cart-badge">{cartCount}</span>
+            )}
           </Link>
         )}
 
-        <button className="theme-btn" onClick={toggleTheme}>
-          {theme === "light" ? "Dark" : "Light"}
-        </button>
+        <div className="theme-toggle-btn" onClick={toggleTheme}>
+          <img
+            src={theme === "light" ? themeDarkIcon : themeLightIcon}
+            alt="Theme toggle"
+            className="theme-toggle-icon"
+          />
+          {/*<span className="theme-toggle-text">
+            {theme === "light" ? "Dark mode" : "Light mode"}
+          </span>*/}
+        </div>
       </div>
     </header>
   );

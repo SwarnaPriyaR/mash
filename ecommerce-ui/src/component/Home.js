@@ -11,9 +11,10 @@ function Home({ theme }) {
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="home-content">
-        <Link to="/products">
-          <button className="theme-btn">View Products</button>
-        </Link>
+      <h1 className="brand-title">Mash Clothing</h1>
+        <Link to="/products" className="view-products-link">
+            <button className="theme-btn">View Products</button>
+          </Link>
       </div>
     </div>
   );

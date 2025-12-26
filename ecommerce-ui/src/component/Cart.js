@@ -1,58 +1,48 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { FaShoppingCart } from "react-icons/fa";
 
 function Cart() {
   const { cart, clearCart } = useContext(CartContext);
 
+  const cartTotal = cart.reduce(
+    (sum, p) => sum + Number(p.price.replace("₹", "")) * p.quantity,
+    0
+  );
 
-  const phoneNumber = "9176449578"; // WhatsApp number
-
-  const message = cart
-    .map((p, i) => `${i + 1}. ${p.name} - ${p.price}`)
-    .join("\n");
-
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    "Hello, I want to place an order:\n" + message
-  )}`;
+  if (cart.length === 0) {
+    return <div className="page-container"><h2>Your cart is empty</h2></div>;
+  }
 
   return (
     <div className="page-container">
+      <h2><FaShoppingCart /> Cart</h2>
 
+      {cart.map((p) => {
+        const price = Number(p.price.replace("₹", ""));
+        const total = price * p.quantity;
 
-      <h2 style={{ marginTop: "20px" }}>Your Cart</h2>
+        return (
+          <div className="cart-item" key={p.id}>
+            <img src={p.image} alt={p.name} />
 
-      {cart.length === 0 ? (
-        <p>Your cart is empty</p>
-      ) : (
-        <>
-          <ul className="product-list">
-            {cart.map((p, idx) => (
-              <li className="cart-item" key={idx}>
-                <strong>{p.name}</strong>
-                <span>{p.price}</span>
-              </li>
-            ))}
-          </ul>
+            <div className="cart-info">
+              <h4>{p.name}</h4>
+              <p>₹{price} × {p.quantity}</p>
+            </div>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="theme-btn" style={{ marginTop: "20px" }}>
-              Checkout via WhatsApp
-            </button>
-          </a>
+            <div className="cart-total">
+              ₹{total}
+            </div>
+          </div>
+        );
+      })}
 
-          <button
-            className="theme-btn"
-            style={{ marginTop: "12px", background: "#444" }}
-            onClick={clearCart}
-          >
-            Clear Cart
-          </button>
-        </>
-      )}
+      <h3>Grand Total: ₹{cartTotal}</h3>
+
+      <button className="icon-btn" onClick={clearCart}>
+        Clear Cart
+      </button>
     </div>
   );
 }

@@ -3,14 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./component/Header";
 import Home from "./component/Home";
-import Products from "./component/Product";
-import ProductDetail from "./component/ProductDetail";
+import Products from "./component/product/Product";
+import ProductDetail from "./component/product/ProductDetail";
 import Cart from "./component/Cart";
 
 function App() {
   const [theme, setTheme] = useState("light");
 
-  // ✅ Apply theme on first load + when theme changes
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);

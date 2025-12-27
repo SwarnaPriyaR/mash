@@ -1,17 +1,22 @@
+import thalapathyFront from "../assets/product/images/ThalapathyFront.jpg";
+import zebraMock from "../assets/product/images/Zebramockup.jpg";
+
 const products = [
   {
     id: 1,
-    name: "Organic Honey",
+    name: "Jananayagan Tee",
+    category: "Oversized",
     price: "₹450",
     description: "Pure organic honey directly sourced from farms.",
-    image: "https://via.placeholder.com/250"
+    image: thalapathyFront
   },
   {
     id: 2,
-    name: "Cold Pressed Coconut Oil",
+    name: "Zebra Printed Tee",
+    category: "Regular",
     price: "₹650",
     description: "100% natural cold pressed coconut oil.",
-    image: "https://via.placeholder.com/250"
+    image: zebraMock
   }
 ];
 

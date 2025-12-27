@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
+import "../Cart.css"; // create this file for styling
 
 function Cart() {
   const { cart, clearCart } = useContext(CartContext);
 
-  // WhatsApp order message
-  const phoneNumber = "9176449578"; // your WhatsApp number
+  const phoneNumber = "8825506681";
   const message = cart
     .map((p, i) => `${i + 1}. ${p.name} - ${p.price} × ${p.quantity}`)
     .join("\n");
@@ -14,7 +14,6 @@ function Cart() {
     "Hello, I want to place an order:\n" + message
   )}`;
 
-  // Calculate total
   const cartTotal = cart.reduce(
     (sum, p) => sum + Number(p.price.replace("₹", "")) * p.quantity,
     0
@@ -40,12 +39,12 @@ function Cart() {
 
         return (
           <div className="cart-item" key={p.id}>
-            <img src={p.image} alt={p.name} />
+            <img src={p.image} alt={p.name} className="cart-img" />
             <div className="cart-info">
-              <h4>{p.name}</h4>
-              <p>
+              <span className="cart-name">{p.name}</span>
+              <span className="cart-quantity">
                 ₹{price} × {p.quantity}
-              </p>
+              </span>
             </div>
             <div className="cart-total">₹{total}</div>
           </div>
@@ -55,7 +54,7 @@ function Cart() {
       <h3>Grand Total: ₹{cartTotal}</h3>
 
       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-        <button>Checkout via WhatsApp</button>
+        <button>Order via WhatsApp</button>
       </a>
 
       <button className="icon-btn" onClick={clearCart}>

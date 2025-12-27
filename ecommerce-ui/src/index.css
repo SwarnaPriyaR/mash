@@ -95,7 +95,9 @@ body {
 }
 
 .logo {
-  height: 40px;
+  height: 140px;          /* bigger logo */
+  width: 140px;
+  margin-bottom: 24px;   /* space between logo & button */
   cursor: pointer;
 }
 
@@ -105,27 +107,35 @@ body {
   gap: 16px; /* space between cart & toggle */
 }
 
+.header-left {
+  min-width: 120px; /* reserves space even when empty */
+}
+
 
 /* =====================
    HOME HERO
 ===================== */
 
 .home-hero {
-  height: 100vh;
-  width: 100%;
-
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
+
 .home-content {
-  margin-top: 80px; /* keeps button below header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  margin-top: 100px; /* pushes content below header */
 }
+
 /* CART ICON BUTTON */
  .cart-icon-wrapper {
    position: relative;

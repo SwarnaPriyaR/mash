@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import lightBg from "../assets/images/lightHome.png";
 import darkBg from "../assets/images/darkHome.png";
 
+import logoLight from "../assets/images/logoLight.png";
+import logoDark from "../assets/images/logoDark.png";
+
 function Home({ theme }) {
   const bgImage = theme === "dark" ? darkBg : lightBg;
+  const logo = theme === "dark" ? logoDark : logoLight;
 
   return (
     <div>
@@ -12,7 +16,7 @@ function Home({ theme }) {
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         <div className="home-content">
-          <h1 className="brand-title">Mash Clothing</h1>
+         <img src={logo} alt="Mash Clothing" className="logo" />
           <Link to="/products" className="view-products-link">
             <button className="theme-btn">View Products</button>
           </Link>

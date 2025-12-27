@@ -1,12 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import ThemeToggle from "./ThemeToggle.js";
 
 
 import logo from "../assets/images/logoLight.png";
 import cartIcon from "../assets/images/trolley.png";
-import themeLightIcon from "../assets/images/light.png";
-import themeDarkIcon from "../assets/images/dark.png";
+
 
 function Header({ toggleTheme, theme }) {
 
@@ -44,16 +44,8 @@ function Header({ toggleTheme, theme }) {
             )}
           </Link>
         )}
-
-        <div className="theme-toggle-btn" onClick={toggleTheme}>
-          <img
-            src={theme === "light" ? themeDarkIcon : themeLightIcon}
-            alt="Theme toggle"
-            className="theme-toggle-icon"
-          />
-          {/*<span className="theme-toggle-text">
-            {theme === "light" ? "Dark mode" : "Light mode"}
-          </span>*/}
+        <div className="theme-switch">
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         </div>
       </div>
     </header>

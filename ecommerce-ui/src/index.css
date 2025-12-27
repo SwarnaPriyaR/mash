@@ -101,11 +101,10 @@ body {
 
 .header-right {
   display: flex;
-  gap: 12px;
-
-  /* 👇 move slightly left */
-  margin-right: 16px;
+  align-items: center;
+  gap: 16px; /* space between cart & toggle */
 }
+
 
 /* =====================
    HOME HERO
@@ -173,6 +172,33 @@ body {
    padding: 8px 14px;
    font-size: 14px;
  }
+
+/* contact details*/
+.contact-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--page-bg);
+  color: var(--text-color);
+}
+
+.contact-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.contact-section p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.contact-section a {
+  color: var(--btn-bg);
+  text-decoration: none;
+}
+
+.contact-section a:hover {
+  text-decoration: underline;
+}
 
 
 
@@ -350,33 +376,6 @@ body[data-theme="dark"] .cart-item {
   width: 260px;
   max-width: 100%;
   margin-bottom: 20px;
-}
-
-.theme-toggle-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  background: transparent; /* no background */
-  border: none;
-  padding: 4px 6px;
-
-  cursor: pointer;
-}
-
-.theme-toggle-icon {
-  width: 28px;   /* 👈 bigger */
-  height: 28px;
-  flex-shrink: 0;
-
-  /* helps visibility on image backgrounds */
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-}
-
-.theme-toggle-text {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-color);
 }
 
 

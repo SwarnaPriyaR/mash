@@ -1,0 +1,86 @@
+/* =====================
+   THEME TOGGLE
+===================== */
+
+/* SWITCH WRAPPER */
+.btn-color-mode-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* HIDDEN INPUT */
+.btn-color-mode-switch input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 3;
+  cursor: pointer;
+}
+
+/* SWITCH BODY */
+.btn-color-mode-switch-inner {
+  width: 60px;
+  height: 30px;              /* extra height */
+  background: #e0e0e0;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  transition: background 0.3s ease;
+}
+
+/* SLIDER */
+.btn-color-mode-switch-inner::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 4px;
+  left: 4px;
+  background: transparent;   /* transparent slider */
+  border-radius: 50%;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+/* ICONS (sun and moon inside the toggle) */
+.toggle-icon {
+  font-size: 14px;
+  z-index: 1;
+  pointer-events: none; /* avoid interfering with toggle click */
+}
+
+/* LIGHT THEME */
+body[data-theme="light"] .sun {
+  color: #ffa500; /* sun visible */
+}
+
+body[data-theme="light"] .moon {
+  color: #777; /* moon muted */
+}
+
+/* DARK THEME */
+body[data-theme="dark"] .sun {
+  color: #555; /* sun muted */
+}
+
+body[data-theme="dark"] .moon {
+  color: #fff; /* moon visible */
+  text-shadow: 0 0 6px #fff;
+}
+
+/* TOGGLE SLIDER MOVEMENT */
+.btn-color-mode-switch input:checked + .btn-color-mode-switch-inner::after {
+  transform: translateX(30px);
+}
+
+/* TOGGLE BACKGROUND */
+.btn-color-mode-switch input:checked + .btn-color-mode-switch-inner {
+  background: #151515;
+}

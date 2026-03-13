@@ -1,0 +1,15 @@
+.gradient-background {
+  background: linear-gradient(45deg, #ff6b6b, #f7f8f8);
+}
+
+.card {
+  background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.header {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+}
+
+.footer {
+  background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+}

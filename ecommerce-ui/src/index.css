@@ -47,7 +47,6 @@ body[data-theme="dark"] .brand-title {
 
 :root {
   --text-color: #000000;
-  --page-bg: #ffffff;
 
   --btn-bg: #6b7280;
   --btn-text: #ffffff;
@@ -57,10 +56,15 @@ body[data-theme="dark"] .brand-title {
 }
 
 body[data-theme="light"] {
+
+--glow-color: rgba(0, 238, 255, 0.7);
+
+  --page-bg: #d9c1b2
   --addcart-bg: #fff;
     --addcart-text: #000;
     --addcart-hover-bg: #000;
     --addcart-hover-text: #fff;
+    --card-bg: #60434b
 
     --continue-bg: #fff;
     --continue-text: #000;
@@ -69,24 +73,24 @@ body[data-theme="light"] {
 }
 
 body[data-theme="dark"] {
+  --glow-color: rgba(147, 103, 115, 0.9);
   --text-color: #ffffff;
-  --page-bg: #333333;
+  --page-bg: #2d1f23;
 
-  --btn-bg: linear-gradient(135deg, #003c3c, #004f4f);
-  --btn-text: #ffffff;
+  --btn-bg: #936773
+  --btn-text: #000;
 
   --cart-badge-bg: #00a6a6;
   --cart-badge-text: #0b0b0b;
 
-  --addcart-bg: #000;
-    --addcart-text: #fff;
-    --addcart-hover-bg: #fff;
-    --addcart-hover-text: #000;
+  --addcart-bg: #936773;
+  --addcart-text: #000;
+  --card-bg: #60434b;
 
-    --continue-bg: #000;
-    --continue-text: #fff;
-    --continue-hover-bg: #fff;
-    --continue-hover-text: #000;
+  --continue-bg: #936773;
+  --continue-text: #000;
+  --view-bg: linear-gradient(170deg,rgba(252, 192, 192, 1) 0%, rgba(172, 112, 136, 1) 73%);
+  --view-text: #000
 }
 
 /* =====================
@@ -259,7 +263,7 @@ body[data-theme="dark"] {
   text-decoration: none;
 }
 
-.theme-btn {
+.filter-btn {
   padding: 14px 30px;
   font-size: 16px;
   background: var(--btn-bg);
@@ -270,9 +274,36 @@ body[data-theme="dark"] {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.theme-btn:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+.filter-btn:hover {
+  background-color: var(--addcart-bg);
+  color: var(--addcart-text);
+
+  /* Intense glow effect on hover */
+  box-shadow: 0 0 10px var(--glow-color),
+              0 0 40px var(--glow-color),
+              0 0 80px var(--glow-color);
+
+  transform: translateY(-2px);
+}
+
+.view-btn {
+  padding: 14px 30px;
+  font-size: 16px;
+  background: var(--view-bg);
+  color: var(--view-text);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Added box-shadow to transition */
+}
+
+.view-btn:hover {
+  /* Standard glow using the solid variable */
+  background-position: right center;
+  box-shadow: 0 0 15px var(--glow-color),
+              0 0 30px var(--glow-color);
+
+  transform: translateY(-2px);
 }
 
 /* =====================
@@ -289,16 +320,21 @@ body[data-theme="dark"] {
 }
 
 .product-card {
-  background: var(--card-bg, #fff);
+  background: var(--card-bg); /* Your requested color */
   border-radius: 12px;
   padding: 16px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #fff; /* White text for better contrast on dark background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle edge highlight */
 }
 
+/* Optional: Add the same glow color to the card when hovering */
 .product-card:hover {
-  transform: translateY(-6px);
-  transition: 0.3s ease;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3),
+              0 0 15px var(--glow-color); /* Uses your #936773 glow variable */
 }
 
 .product-img {
@@ -319,10 +355,10 @@ body[data-theme="dark"] {
 
 .product-detail-card {
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   text-align: center;
-  background-color: #fff;
+  background-color: #60434b;
 }
 
 .product-desc {
@@ -360,32 +396,79 @@ body[data-theme="dark"] {
 
 /* Add to Cart button */
 .add-to-cart-btn-centered {
-  background-color: var(--addcart-bg, #000);
-  color: var(--addcart-text, #fff);
+
+display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--addcart-bg);
+  color: var(--addcart-text);
+  border-radius: 40px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  /* Initial subtle glow */
+  box-shadow: 0 0 5px var(--glow-color), 0 0 20px var(--glow-color);
+
+  /* Animation from your btn-box */
+  opacity: 1;
+  animation: slideTop 1s ease forwards;
+  animation-delay: 1s;
+  transition: all 0.4s ease;
 }
 
 .add-to-cart-btn-centered:hover {
-  background-color: var(--addcart-hover-bg);
-  color: var(--addcart-hover-text);
-  border: 2px solid var(--addcart-hover-bg);
+  background-color: var(--addcart-bg);
+  color: var(--addcart-text);
+
+  /* Intense glow effect on hover */
+  box-shadow: 0 0 10px var(--glow-color),
+              0 0 40px var(--glow-color),
+              0 0 80px var(--glow-color);
+
+  transform: translateY(-2px);
 }
 
-/* Continue Shopping button */
 .continue-shopping-btn {
-  background-color: var(--continue-bg, #fff);
-  color: var(--continue-text, #000);
-  border: none; /* no border initially */
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--continue-bg);
+  color: var(--continue-text);
+  border-radius: 40px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  /* Initial subtle glow */
+  box-shadow: 0 0 5px var(--glow-color), 0 0 20px var(--glow-color);
+
+  /* Animation from your btn-box */
+  opacity: 1;
+  animation: slideTop 1s ease forwards;
+  animation-delay: 1s;
+  transition: all 0.4s ease;
 }
 
 .continue-shopping-btn:hover {
-  background-color: var(--continue-hover-bg);
-  color: var(--continue-hover-text);
-  border: 2px solid var(--continue-hover-bg);
+  background-color: var(--continue-bg);
+  color: var(--continue-text);
+
+  /* Intense glow effect on hover */
+  box-shadow: 0 0 10px var(--glow-color),
+              0 0 40px var(--glow-color),
+              0 0 80px var(--glow-color);
+
+  transform: translateY(-2px);
 }
 
 /* Dark theme cards */
 body[data-theme="dark"] .product-card {
-  background-color: #1a1a1a;
+  background-color: #60434;
   color: #ffffff;
 }
 
@@ -434,3 +517,5 @@ body[data-theme="dark"] .cart-item {
     height: 36px;
   }
 }
+/*background: #81A6C6;
+background: linear-gradient(138deg,rgba(129, 166, 198, 1) 0%, rgba(243, 227, 208, 1) 100%);*/

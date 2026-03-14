@@ -15,17 +15,17 @@ function Products() {
       <h2>Products</h2>
 
       <div className="filter-bar">
-        <button className="theme-btn" onClick={() => setSelectedCategory("all")}>
+        <button className="filter-btn" onClick={() => setSelectedCategory("all")}>
           All
         </button>
         <button
-          className="theme-btn"
+          className="filter-btn"
           onClick={() => setSelectedCategory("Oversized")}
         >
           Oversized Fit
         </button>
         <button
-          className="theme-btn"
+          className="filter-btn"
           onClick={() => setSelectedCategory("Regular")}
         >
           Regular Fit
@@ -40,7 +40,7 @@ function Products() {
             <p>{p.price}</p>
 
             <Link to={`/product/${p.id}`}>
-              <button className="theme-btn">View Details</button>
+              <button className="view-btn">View Details</button>
             </Link>
           </li>
         ))}

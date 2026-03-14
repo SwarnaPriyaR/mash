@@ -18,7 +18,7 @@ function Home({ theme }) {
         <div className="home-content">
          <img src={logo} alt="Mash Clothing" className="logo" />
           <Link to="/products" className="view-products-link">
-            <button className="theme-btn">View Products</button>
+            <button className="view-btn">View Products</button>
           </Link>
         </div>
       </div>
